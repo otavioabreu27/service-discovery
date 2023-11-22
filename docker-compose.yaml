@@ -1,0 +1,103 @@
+version: '3'
+
+services:
+  discovery:
+    build:
+      context: ./service-discovery/
+      dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    container_name: discovery
+    networks:
+      - test_network
+    
+  gateway:
+    build:
+      context: ./service-gateway/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: gateway
+    networks:
+      - test_network
+    depends_on:
+      - discovery
+  
+  focos1:
+    build:
+      context: ./focos-service/
+      dockerfile: Dockerfile
+    networks:
+      - test_network
+    depends_on:
+      - discovery
+    environment:
+      - SERVER_PORT=4500
+      - DB_HOST=150.163.25.44
+      - DB_PORT=5436
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=Qmd@1998
+  
+  focos2:
+    build:
+      context: ./focos-service/
+      dockerfile: Dockerfile
+    networks:
+      - test_network
+    depends_on:
+      - discovery
+    environment:
+      - SERVER_PORT=4501
+      - DB_HOST=150.163.25.44
+      - DB_PORT=5436
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=Qmd@1998
+  
+  focos3:
+    build:
+      context: ./focos-service/
+      dockerfile: Dockerfile
+    networks:
+      - test_network
+    depends_on:
+      - discovery
+    environment:
+      - SERVER_PORT=4502
+      - DB_HOST=150.163.25.44
+      - DB_PORT=5436
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=Qmd@1998
+  
+  focos4:
+    build:
+      context: ./focos-service/
+      dockerfile: Dockerfile
+    networks:
+      - test_network
+    depends_on:
+      - discovery
+    environment:
+      - SERVER_PORT=4503
+      - DB_HOST=150.163.25.44
+      - DB_PORT=5436
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=Qmd@1998
+  
+  focos5:
+    build:
+      context: ./focos-service/
+      dockerfile: Dockerfile
+    networks:
+      - test_network
+    depends_on:
+      - discovery
+    environment:
+      - SERVER_PORT=4504
+      - DB_HOST=150.163.25.44
+      - DB_PORT=5436
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=Qmd@1998
+
+networks:
+  test_network:
+    driver: bridge
