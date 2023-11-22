@@ -1,0 +1,28 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: focos-service
+          uri: lb://FOCOS-SERVICE
+          predicates:
+            - Path=/focos/**
+          filters:
+            - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    registry-fetch-inteval: 
+    service-url:
+      defaultZone: http://discovery:8761/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 2
