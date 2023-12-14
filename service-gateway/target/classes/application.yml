@@ -13,6 +13,12 @@ spring:
             - Path=/focos/**
           filters:
             - StripPrefix=1
+        - id: auxiliares-service
+          uri: lb://AUXILIARES-SERVICE
+          predicates:
+            - Path=/auxiliares/**
+          filters:
+            - StripPrefix=1
       discovery:
         locator:
           enabled: true
