@@ -29,7 +29,7 @@ public class PaisesService {
             @Nullable Long id_pais
     ) {
         // Select
-        String query = "select vfm.name_0 as pais, count(vfm.nfocos) as focos\n";
+        String query = "select vfm.name_0 as pais, sum(vfm.nfocos) as focos\n";
 
         // From
         query += "from api_dados_abertos.view_focos_munic vfm\n";
@@ -73,7 +73,7 @@ public class PaisesService {
             @Nullable Long id_pais
     ) {
         // Select
-        String query = "select vfm.name_0 as pais, count(vfm.nfocos) as focos, vfm.data\n";
+        String query = "select vfm.name_0 as pais, sum(vfm.nfocos) as focos, vfm.data\n";
 
         // From
         query += "from api_dados_abertos.view_focos_munic vfm\n";

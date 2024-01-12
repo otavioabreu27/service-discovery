@@ -31,7 +31,7 @@ public class BiomasService {
             @Nullable String bioma
     ) {
         // Select
-        String query = "select vfm.bioma as bioma, count(vfm.nfocos) as focos\n";
+        String query = "select vfm.bioma as bioma, sum(vfm.nfocos) as focos\n";
 
         // From
         query += "from api_dados_abertos.view_focos_munic vfm\n";
@@ -75,7 +75,7 @@ public class BiomasService {
             @Nullable String bioma
     ) {
         // Select
-        String query = "select vfm.bioma as bioma, count(vfm.nfocos) as focos, vfm.data\n";
+        String query = "select vfm.bioma as bioma, sum(vfm.nfocos) as focos, vfm.data\n";
 
         // From
         query += "from api_dados_abertos.view_focos_munic vfm\n";

@@ -1,7 +1,6 @@
 package com.inpe.focosservice.services;
 
 import com.inpe.focosservice.database.PostgresDriver;
-import com.inpe.focosservice.entities.EstadosRow;
 import com.inpe.focosservice.entities.MunicipiosRow;
 import com.inpe.focosservice.entities.MunicipiosRowPorDia;
 import jakarta.annotation.Nullable;
@@ -32,7 +31,7 @@ public class MunicipiosService {
             @Nullable Long id_municipio
     ) {
         // Select
-        String query = "select vfm.name_2 as municipio, vfm.name_1 as estado, count(vfm.nfocos) as focos\n";
+        String query = "select vfm.name_2 as municipio, vfm.name_1 as estado, sum(vfm.nfocos) as focos\n";
 
         // From
         query += "from api_dados_abertos.view_focos_munic vfm\n";
@@ -62,7 +61,7 @@ public class MunicipiosService {
         if (id_municipio != null) {
             query += String.format(
                     "and vfm.id_2 = %d\n",
-                    id_estado
+                    id_municipio
             );
         }
 
@@ -84,7 +83,7 @@ public class MunicipiosService {
             @Nullable Long id_municipio
     ) {
         // Select
-        String query = "select vfm.name_2 as municipio, vfm.name_1 as estado, count(vfm.nfocos) as focos, vfm.data\n";
+        String query = "select vfm.name_2 as municipio, vfm.name_1 as estado, sum(vfm.nfocos) as focos, vfm.data\n";
 
         // From
         query += "from api_dados_abertos.view_focos_munic vfm\n";

@@ -32,7 +32,7 @@ public class EstadosService {
             @Nullable Long id_estado
     ) {
         // Select
-        String query = "select vfm.name_1 as estado, count(vfm.nfocos) as focos\n";
+        String query = "select vfm.name_1 as estado, sum(vfm.nfocos) as focos\n";
 
         // From
         query += "from api_dados_abertos.view_focos_munic vfm\n";
@@ -82,7 +82,7 @@ public class EstadosService {
             @Nullable Long id_estado
     ) {
         // Select
-        String query = "select vfm.name_1 as estado, count(vfm.nfocos) as focos, vfm.data\n";
+        String query = "select vfm.name_1 as estado, sum(vfm.nfocos) as focos, vfm.data\n";
 
         // From
         query += "from api_dados_abertos.view_focos_munic vfm\n";
