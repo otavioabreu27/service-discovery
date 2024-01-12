@@ -113,7 +113,7 @@ public class MunicipiosService {
         if (id_municipio != null) {
             query += String.format(
                     "and vfm.id_2 = %d\n",
-                    id_estado
+                    id_municipio
             );
         }
 
